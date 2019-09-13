@@ -8,8 +8,13 @@ use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
 use App\Customer as Cust;
+use App\Mail\OrderCreated;
+use App\Mail\OrderShipped;
+use App\Mail\OrderConfirmation;
 use App\Order;
 use App\OrderItem;
+use Illuminate\Support\Facades\Mail;
+
 
 class ChargesController extends Controller
 {
@@ -19,7 +24,8 @@ class ChargesController extends Controller
          // Step 1:
          // Validate the request
         $validated = $request->validated();
-        
+
+
        
         // Step 2:
         // Create a Customer or Select one if exists.
@@ -80,14 +86,19 @@ class ChargesController extends Controller
 
         // Step 5:
         // Add Items to Order
+        // Current issue is array to string conversion issue.
+        // $items = collect($validated['items']);
+        // $items->each(function ($item, $key) {
+            
+        // });
+        
         foreach($validated['items'] as $item)
         {
-           
             $orderItem = new OrderItem;
             $orderItem->title = $item['Title'];
             $orderItem->order_id = $order->id;
             $orderItem->author = $item['Author'];
-            $orderItem->category = $item['Category'];
+            $orderItem->category = $item['Category'][0];
             $orderItem->cost = $item['Cost'];
             $orderItem->description = $item['Description'];
             $orderItem->quantity = $item['quant'];
@@ -95,12 +106,30 @@ class ChargesController extends Controller
         }
 
         // Send Order Summary to Company
+        Mail::to(env('COMPANY_EMAIL'))->send(
+            new OrderCreated($order)
+        );
 
-
+        // Send An Email to the Customer Confirming Order
+        Mail::to($order->customer->email)->send(
+            new OrderConfirmation($order)
+        );
         // Return a Success string
         return response()->json('Success', 200);
 
     }
+    public function complete($id){
+        $order = Order::find($id);
+        $order->order_status = "shipped";
+        $order->save();
+        // Send an email to the customer letting them know their order has shipped.
+        Mail::to($order->customer->email)->send(
+            new OrderShipped($order)
+        );
+
+        return view('complete', compact('order'));
+    }
+
     protected function doPayment($token, $email, $amount)
     {
         return $token;
@@ -129,3 +158,4 @@ class ChargesController extends Controller
         ));
     }
 }
+

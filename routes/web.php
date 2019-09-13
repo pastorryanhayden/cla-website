@@ -14,3 +14,5 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/complete/{id}', 'ChargesController@complete');
+Route::resource('books', 'BooksController');
