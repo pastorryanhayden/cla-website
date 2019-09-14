@@ -15,4 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/complete/{id}', 'ChargesController@complete');
-Route::resource('books', 'BooksController');
+
+
+
+Auth::routes();
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::resource('books', 'BooksController');
+    Route::resource('categories', 'CategoriesController');
+    Route::resource('authors', 'AuthorsController');
+});
+
+

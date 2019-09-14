@@ -12,6 +12,7 @@
         "barryvdh/laravel-cors": "^0.11.4",
         "coconutcraig/laravel-postmark": "^2.6",
         "fideloper/proxy": "^4.0",
+        "laravel-frontend-presets/tailwindcss": "^2.0",
         "laravel/framework": "^6.0",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
