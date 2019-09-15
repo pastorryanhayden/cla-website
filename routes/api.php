@@ -12,7 +12,8 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
+Route::get('/books', 'BooksApiController@index');
+Route::get('/categories', 'BooksApiController@catindex');
 Route::post('/charge', 'ChargesController@index');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
