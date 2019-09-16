@@ -24,7 +24,7 @@
                     @foreach($categories as $category)
                     <div>
                         <label class="inline-flex items-center">
-                            <input type="checkbox" value="{{$category->id}}" name="category_id" class="form-checkbox" >
+                            <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-checkbox" >
                             <span class="ml-2">{{$category->title}}</span>
                         </label>
                     </div>
