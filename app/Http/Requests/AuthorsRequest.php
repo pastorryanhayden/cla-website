@@ -25,7 +25,7 @@ class AuthorsRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:authors|max:60',
-            'bio' => 'required| min:10',
+            'bio' => 'nullable| min:10',
             'photo' => 'nullable | url'
         ];
     }

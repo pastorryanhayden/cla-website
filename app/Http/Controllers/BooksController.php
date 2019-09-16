@@ -97,7 +97,8 @@ class BooksController extends Controller
         $book->description = $validated['description'];
         $book->photo = $validated['photo'];
         $book->save();
-        $book->categories()->attach($validated['category_id']);
+
+        $book->categories()->sync($validated['category_id']);
         return redirect('/books');
     }
 

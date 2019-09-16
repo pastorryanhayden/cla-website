@@ -26,7 +26,7 @@ class BooksUpdateRequest extends FormRequest
         return [
             'title' => 'required|min:5|max:60',
             'author_id' => 'required|integer',
-            'category_id' => 'required|integer',
+            'category_id' => 'array|required',
             'photo' => 'required|url',
             'description' => 'required|min:10',
             'cost' => 'required|numeric'

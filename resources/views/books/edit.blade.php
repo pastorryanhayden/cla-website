@@ -19,15 +19,20 @@
                 </select>
                 <a href="/authors/create" class="text-sm text-blue-700 italic mt-2 block" target="blank">Add an author</a>
             </label>
-            <label class="block flex-grow">
-                <span class="text-gray-700">Category</span>
-                <select class="form-select mt-1 block w-64" name="category_id">
+            <div class="block flex-grow">
+                <span class="text-gray-700">Categories</span>
+                <div class="mt-2">
                     @foreach($categories as $category)
-                    <option value="{{$category->id}}" {{$book->categories->first()->id == $category->id ? 'selected' : ''}}>{{$category->title}}</option>
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" value="{{$category->id}}" name="category_id[]" class="form-checkbox" {{$book->categories->contains($category->id) ? 'checked' : ''}}>
+                            <span class="ml-2">{{$category->title}}</span>
+                        </label>
+                    </div>
                     @endforeach
-                </select>
-                <a href="/categories/create" class="text-sm text-blue-700 italic mt-2 block" target="blank">Add a category</a>
-            </label>
+                    <a href="/categories/create" class="text-sm text-blue-700 italic mt-2 block" target="blank">Add a category</a>
+                </div>
+            </div>
         </div>
         <label class="block mb-6">
             <span class="text-gray-700 mb-1 block">Image</span>

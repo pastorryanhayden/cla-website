@@ -21,10 +21,11 @@ Route::get('/complete/{id}', 'ChargesController@complete');
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/home', 'BooksController@index')->name('home');
     Route::resource('books', 'BooksController');
     Route::resource('categories', 'CategoriesController');
     Route::resource('authors', 'AuthorsController');
+    Route::post('/bookauthors', 'AuthorsController@booksstore');
 });
 
 
