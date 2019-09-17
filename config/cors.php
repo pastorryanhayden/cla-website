@@ -12,8 +12,8 @@ return [
     |
     */
    
-    'supportsCredentials' => false,
-    'allowedOrigins' => ['http://localhost:8080'],
+    'supportsCredentials' => false, 
+    'allowedOrigins' => ['http://localhost:8080', 'https://cla.mustincrease.com', 'http://www.christianlaw.org'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
     'allowedMethods' => ['*'],

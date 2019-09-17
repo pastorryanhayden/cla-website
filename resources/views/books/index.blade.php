@@ -14,7 +14,7 @@
         <tbody>
             @foreach($books as $book)
             <tr>
-                <th scope="row">{{$book->id}}</th>
+                <th scope="row">{{$book->id}}</th> 
                 <td>{{$book->title}}</td>
                 <td>{{$book->author->name}}</td>
                 <td>
