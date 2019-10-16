@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
+use App\Donation;
 
 class DonateController extends Controller
 {
@@ -34,6 +35,12 @@ class DonateController extends Controller
         } catch (\Exception $e) {
             return $e->getMessage();
         }
+        $donation = new Donation;
+        $donation->donator = $request->donator;
+        $donation->ammount = $request->ammount;
+        $donation->address = $request->address;
+        $donation->email = $request->email;
+        $donation->save();
         $name = env('APP_NAME');
         $image = env('APP_IMAGE');
         return view('success', compact('name', 'image'));

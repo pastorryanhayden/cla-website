@@ -1,7 +1,7 @@
 @extends('layouts.donate')
 @section('content')
 <div class="flex justify-center items-center h-screen w-full">
-    <div class="max-w-xl bg-gray-200">
+    <div class="max-w-2xl bg-gray-200">
         <section class="title flex p-6 border-b items-center">
             <div class="mr-12">
                 <h3 class="text-lg">Donate To</h3>
@@ -15,10 +15,18 @@
             <form action="/donate" method="POST" id="payment-form" class="p-12">
                 {{ csrf_field() }}
                 <div class="form-row">
+                    <label for="name" class="mb-2">
+                        Your Name
+                    </label>
+                    <input type="text" name="donator" id="name" class="border py-2 px-4 block mb-6" placeholder="John Doe">
                     <label for="email" class="mb-2">
                         Your Email
                     </label>
                     <input type="email" name="email" id="email" class="border py-2 px-4 block mb-6" placeholder="youremail@provider.com">
+                    <label for="address" class="mb-2">
+                        Your Billing Address
+                    </label>
+                    <textarea name="address" id="address" rows="3" class="border py-2 px-4 block mb-6"></textarea>
                     <label for="amount" class="mb-2">
                         Ammount to Donate (in dollars)
                     </label>
