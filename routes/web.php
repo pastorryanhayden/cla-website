@@ -19,7 +19,9 @@ Route::get('/complete/{id}', 'ChargesController@complete');
 
 
 Auth::routes();
-
+Route::get('/bookstore', function(){
+    return view('bookstore');
+});
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'BooksController@index')->name('home');
     Route::resource('books', 'BooksController');
