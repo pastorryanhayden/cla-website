@@ -15,7 +15,7 @@ class DonateController extends Controller
     {
         $name = "Christian Law Association";
         $image = env('APP_IMAGE');
-        $key = env('STRIPE_KEY');
+        $key = env('LIVE_KEY');
         
 
         return view('donate', [
