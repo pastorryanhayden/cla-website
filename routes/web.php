@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/bookstore', function(){
     return view('bookstore');
 });
+Route::get('donate', 'DonateController@index');
+Route::post('donate', 'DonateController@submit');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'BooksController@index')->name('home');
     Route::resource('books', 'BooksController');
