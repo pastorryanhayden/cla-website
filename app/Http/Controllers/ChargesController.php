@@ -94,6 +94,7 @@ class ChargesController extends Controller
         
         foreach($validated['items'] as $item)
         {
+            dd($item);
             $orderItem = new OrderItem;
             $orderItem->title = $item['title'];
             $orderItem->order_id = $order->id;
