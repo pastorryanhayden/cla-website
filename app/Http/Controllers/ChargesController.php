@@ -98,7 +98,7 @@ class ChargesController extends Controller
             $orderItem->title = $item['title'];
             $orderItem->order_id = $order->id;
             $orderItem->author = $item['author']['name'];
-            $orderItem->category = $item['categories'][0];
+            $orderItem->category = $item['categories'][0]['title'];
             $orderItem->cost = $item['cost'];
             $orderItem->description = $item['description'];
             $orderItem->quantity = $item['quant'];
