@@ -94,11 +94,11 @@ class ChargesController extends Controller
         
         foreach($validated['items'] as $item)
         {
-            dd($item);
+            dd($item['author']->name);
             $orderItem = new OrderItem;
             $orderItem->title = $item['title'];
             $orderItem->order_id = $order->id;
-            $orderItem->author = $item['author.name'];
+            $orderItem->author = $item['author']->name;
             $orderItem->category = $item['categories'][0];
             $orderItem->cost = $item['cost'];
             $orderItem->description = $item['description'];
