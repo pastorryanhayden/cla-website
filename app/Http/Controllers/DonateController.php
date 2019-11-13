@@ -53,7 +53,7 @@ class DonateController extends Controller
         $donation->phone = $request->phone;
         $donation->email = $request->email;
         $donation->save();
-        Mail::to($request->email)->send(new NewDonation($donation));
+        Mail::to('info@christianlaw.org')->send(new NewDonation($donation));
         $name = env('APP_NAME');
         $image = env('APP_IMAGE');
         return view('success', compact('name', 'image'));
@@ -75,6 +75,7 @@ class DonateController extends Controller
             'amount'   => $correctedAmount,
             'currency' => 'usd',
             'description' => "Donation to $name",
+            'on_bahalf_of' => $connect, 
             "transfer_data" => [
                 "destination" => $connect,
               ],

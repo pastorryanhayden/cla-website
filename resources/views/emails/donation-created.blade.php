@@ -1,7 +1,7 @@
 @component('mail::message')
 # New Donation
 
-{{$donation->donator}} has donated {{$donation->ammount}}.  Here is the contact information:
+{{$donation->donator}} has donated ${{$donation->ammount}}.  Here is the contact information:
 
 {{$donation->donator}}
 {{$donation->email}}
