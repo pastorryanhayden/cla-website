@@ -48,7 +48,7 @@ class DonateController extends Controller
         }
         $donation = new Donation;
         $donation->donator = $request->donator;
-        $donation->ammount = $request->ammount;
+        $donation->ammount = $request->amount;
         $donation->address = $request->address;
         $donation->phone = $request->phone;
         $donation->email = $request->email;
