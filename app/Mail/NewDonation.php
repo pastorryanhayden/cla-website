@@ -5,12 +5,13 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use App\Donation;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NewDonation extends Mailable
 {
     use Queueable, SerializesModels;
-    use App\Donation;
+
 
     /**
      * Create a new message instance.
