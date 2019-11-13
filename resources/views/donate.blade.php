@@ -18,19 +18,19 @@
                     <label for="name" class="mb-2">
                         Your Name
                     </label>
-                    <input type="text" name="donator" id="name" class="border py-2 px-4 block mb-6" placeholder="John Doe">
+                    <input type="text" name="donator" id="name" class="border py-2 px-4 block mb-6" placeholder="John Doe" required>
                     <label for="email" class="mb-2">
                         Your Email
                     </label>
-                    <input type="email" name="email" id="email" class="border py-2 px-4 block mb-6" placeholder="youremail@provider.com">
+                    <input type="email" name="email" id="email" class="border py-2 px-4 block mb-6" placeholder="youremail@provider.com" required>
                     <label for="phone" class="mb-2">
                         Your Phone Number
                     </label>
-                    <input type="text" name="phone" id="phone" class="border py-2 px-4 block mb-6" placeholder="(111) 111-1111 ">
+                    <input type="text" name="phone" id="phone" class="border py-2 px-4 block mb-6" placeholder="(111) 111-1111 " required>
                     <label for="address" class="mb-2">
                         Your Billing Address
                     </label>
-                    <textarea name="address" id="address" rows="3" class="border py-2 px-4 block mb-6"></textarea>
+                    <textarea name="address" id="address" rows="3" class="border py-2 px-4 block mb-6" required></textarea>
                     <label for="amount" class="mb-2">
                         Amount to Donate (in dollars)
                     </label>

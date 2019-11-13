@@ -32,6 +32,14 @@ class DonateController extends Controller
 
     public function submit(Request $request)
     {
+        $validatedData = $request->validate([
+            'donator' => 'required',
+            'ammount' => 'required',
+            'address' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
+    
         try {
             $this->doPayment($request->stripeToken, $request->email, $request->amount);
         } catch (\Exception $e) {
