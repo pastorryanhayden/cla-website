@@ -51,7 +51,7 @@ class DonateController extends Controller
 
     protected function doPayment($token, $email, $amount)
     {
-        Stripe::setApiKey(config('services.stripe.secret'));
+        Stripe::setApiKey(env('STRIPE_KEY', null););
         $name = env('APP_NAME');
         $connect = env('STRIPE_CONNECT', null);
         $customer = Customer::create(array(
