@@ -8,6 +8,7 @@ use Stripe\Charge;
 use Stripe\Customer;
 use Stripe\Stripe;
 use App\Donation;
+use App\Mail\NewDonation;
 
 class DonateController extends Controller
 {
@@ -39,8 +40,10 @@ class DonateController extends Controller
         $donation->donator = $request->donator;
         $donation->ammount = $request->ammount;
         $donation->address = $request->address;
+        $donation->phone = $request->phone;
         $donation->email = $request->email;
         $donation->save();
+
         $name = env('APP_NAME');
         $image = env('APP_IMAGE');
         return view('success', compact('name', 'image'));
@@ -61,9 +64,10 @@ class DonateController extends Controller
             'customer' => $customer->id,
             'amount'   => $correctedAmount,
             'currency' => 'usd',
-            'description' => "Donation to $name"
-        ], [
-            "stripe_account" => ""
+            'description' => "Donation to $name",
+            "transfer_data" => [
+                "destination" => $connect,
+              ],
         ]);
         }else{
             $charge = Charge::create([

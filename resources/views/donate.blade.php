@@ -23,12 +23,16 @@
                         Your Email
                     </label>
                     <input type="email" name="email" id="email" class="border py-2 px-4 block mb-6" placeholder="youremail@provider.com">
+                    <label for="phone" class="mb-2">
+                        Your Phone Number
+                    </label>
+                    <input type="text" name="phone" id="phone" class="border py-2 px-4 block mb-6" placeholder="(111) 111-1111 ">
                     <label for="address" class="mb-2">
                         Your Billing Address
                     </label>
                     <textarea name="address" id="address" rows="3" class="border py-2 px-4 block mb-6"></textarea>
                     <label for="amount" class="mb-2">
-                        Ammount to Donate (in dollars)
+                        Amount to Donate (in dollars)
                     </label>
                     <input type="number" name="amount" id="amount" class="border py-2 px-4 block mb-6" placeholder="10">
                     <label for="card-element" class="mb-2">
