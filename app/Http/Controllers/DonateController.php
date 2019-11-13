@@ -38,6 +38,7 @@ class DonateController extends Controller
             'address' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'stripeToken' => 'required'
         ]);
     
         try {

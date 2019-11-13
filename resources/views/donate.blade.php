@@ -22,6 +22,7 @@
                     <label for="email" class="mb-2">
                         Your Email
                     </label>
+
                     <input type="email" name="email" id="email" class="border py-2 px-4 block mb-6" placeholder="youremail@provider.com" required>
                     <label for="phone" class="mb-2">
                         Your Phone Number
@@ -45,6 +46,15 @@
                     <!-- Used to display Element errors. -->
                     <div id="card-errors" role="alert"></div>
                 </div>
+                @if ($errors->any())
+                <div class="bg-red-100 p-4 text-red-900">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
 
                 <button class="bg-blue-500 text-white py-2 px-6 rounded">Submit Donation</button>
             </form>
