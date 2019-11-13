@@ -34,7 +34,7 @@ class DonateController extends Controller
     {
         $validatedData = $request->validate([
             'donator' => 'required',
-            'ammount' => 'required',
+            'amount' => 'required',
             'address' => 'required',
             'phone' => 'required',
             'email' => 'required',
