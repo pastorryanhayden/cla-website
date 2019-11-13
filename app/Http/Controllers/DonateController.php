@@ -75,11 +75,7 @@ class DonateController extends Controller
             'amount'   => $correctedAmount,
             'currency' => 'usd',
             'description' => "Donation to $name",
-            'on_bahalf_of' => $connect, 
-            "transfer_data" => [
-                "destination" => $connect,
-              ],
-        ]);
+            ], ["stripe_account" => $connect]);
         }else{
             $charge = Charge::create([
             'customer' => $customer->id,
