@@ -29,6 +29,6 @@ class OrderShipped extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.order-shipped');
+        return $this->from('donations@christianlaw.org')->markdown('emails.order-shipped');
     }
 }

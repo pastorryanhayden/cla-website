@@ -30,6 +30,6 @@ class OrderConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.order-confirmation');
+        return $this->from('donations@christianlaw.org')->markdown('emails.order-confirmation');
     }
 }

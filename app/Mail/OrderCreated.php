@@ -29,6 +29,6 @@ class OrderCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.order-created');
+        return $this->from('donations@christianlaw.org')->markdown('emails.order-created');
     }
 }

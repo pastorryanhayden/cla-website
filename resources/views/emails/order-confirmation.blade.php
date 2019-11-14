@@ -45,5 +45,5 @@ For your records, here is a confirmation of what you ordered:
 
 
 Thanks,<br>
-Must Increase Media
+Christian Law Association
 @endcomponent

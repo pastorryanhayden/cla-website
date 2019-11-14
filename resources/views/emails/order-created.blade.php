@@ -34,6 +34,5 @@ After you've shipped the order, please go back to this email and click the butto
 Mark Order Complete
 @endcomponent
 
-Thanks,<br>
-Must Increase Media
+
 @endcomponent
