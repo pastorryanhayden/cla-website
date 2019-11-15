@@ -8,7 +8,7 @@
                 <p class="price font-medium text-red-500 italic mb-4">${{ number_format($book->cost, 2, '.', ',') }}</p>
                 <form  class="add-to-cart flex-grow flex items-center" method="POST" action="/bookstore/add/{{$book->id}}">
                     @csrf
-                <input type="number" name="quanity" class="form-input w-24 mr-4" min="0" placeholder="0">
+                <input type="number" name="quanity" class="form-input w-24 mr-4" min="1" value="1">
                 <input type="hidden" name="bookid" value="{{$book->id}}">
                 <button type="submit" class="no-underline text-blue-500 uppercase tracking-wide text-sm">Add To Cart</button>
                 </form>

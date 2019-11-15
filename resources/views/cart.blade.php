@@ -34,7 +34,7 @@
                     <div class="title w-1/2">
                         <h4 class="font-bold text-lg">{{ $item['item']->title }}</h4>
                         <p class="hidden lg:block">{{ $item['item']->description }}</p>
-                        <form action="/cart/remove/{{$loop->index}}" method="POST">
+                        <form action="/cart/remove/{{$item['item']->id}}" method="POST">
                         @csrf 
                         <button type="submit" class="no-underline text-red-700 inline-flex mt-4">@svg('trash', 'h-6 text-red-700 mr-2') Remove From Cart</button>
                         </form>
@@ -43,7 +43,7 @@
                     <div class="price w-1/4">
                         <p class="text-center text-lg text-gray-600">${{ number_format($item['item']->cost, 2, '.', ',')}}</p>
                     </div>
-                    <form class="quant w-1/4" action="/updateItemQuantity/{{$loop->index}}" method="POST">
+                    <form class="quant w-1/4" action="/updateItemQuantity/{{$item['item']->id}}" method="POST">
                         @csrf
                         <input type="number" name="quantity" id="" class="border w-16 py-2 pl-4 mx-auto block" value="{{ $item['quant'] }}" onchange="showUpdateCart('item{{$loop->index}}')">
                         <button class="updatebutton text-white bg-blue-500 py-1 px-2 hidden mx-auto block mt-2" type="submit">Update</button>

@@ -10,7 +10,6 @@ class BookStoreController extends Controller
 {
     public function index(Request $request)
     {
-        // $request->session()->flush();        
         // dd(session('cart'));
         $cartItems = null;
         if(session('cart'))
@@ -74,18 +73,30 @@ class BookStoreController extends Controller
     }
     public function cartRemove(Request $request, $id)
     {
-        $cartItems = session('cart');
-        unset($cartItems[$id]);
-        session(['cart' => $cartItems ]);
+        $cartItems = collect(session('cart'));
+        $newcart = $cartItems->filter(function($value, $key) use ($id){
+            return $value['item']->id != $id;
+        });
+        session(['cart' => $newcart ]);
         return redirect()->back();
     }
     public function cartUpdate(Request $request, $id)
     {
-        $cartItems = session('cart');
-        $cartItems[$id] = [
-            'item' => $cartItems[$id]['item'],
-            'quant' => $request->input('quantity')
-        ];
+        $cartItems = collect(session('cart'));
+        $i = Book::find($id);
+        $cartItems->transform(function($item, $key) use ($i, $request) {
+            if($item['item'] == $i)
+            {
+               $item['item'] == $i;
+               $item['quant'] = $request->input('quantity');
+               return $item;
+            }
+            else 
+            {
+                return $item;
+            }
+        });
+
         session(['cart' => $cartItems ]);
         return redirect()->back();
     }
