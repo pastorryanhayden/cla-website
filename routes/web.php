@@ -25,6 +25,9 @@ Route::get('/cart', 'BookStoreController@cart');
 Route::post('/cart/remove/{id}', 'BookStoreController@cartRemove');
 Route::post('/updateItemQuantity/{id}', 'BookStoreController@cartUpdate');
 Route::get('/checkout', 'BookStoreController@checkout');
+Route::get('/success', function () {
+    return view('success');
+});
 Route::post('/checkout', 'ChargesController@index');
 Route::get('donate', 'DonateController@index'); 
 Route::post('donate', 'DonateController@submit');
