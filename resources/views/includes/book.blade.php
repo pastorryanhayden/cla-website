@@ -1,4 +1,4 @@
-<article  class="inline-flex flex-col w-56 m-2 h-64" >
+<article  class="inline-flex flex-col w-56 m-2 " >
                 <div class="photo w-full mb-4">
                 <img  src="{{$book->photo}}" alt="{{$book->title}}" class="block h-48" >
                 </div>
