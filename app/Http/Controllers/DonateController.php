@@ -64,24 +64,23 @@ class DonateController extends Controller
         Stripe::setApiKey(env('STRIPE_KEY', null));
         $name = env('APP_NAME');
         $connect = env('STRIPE_CONNECT', null);
-      
-        $correctedAmount = $amount * 100;
-        if($connect){
-            $charge = Charge::create([
-            'source' => $token,
-            'amount'   => $correctedAmount,
-            'currency' => 'usd',
-            'description' => "Donation to $name",
-            ], ["stripe_account" => $connect]);
-        }else{
-            $charge = Charge::create([
-            'source' => $token,
-            'amount'   => $correctedAmount,
-            'currency' => 'usd',
-            'description' => "Donation to $name"
-        ]);
+        if(is_numeric($amount)){
+            $correctedAmount = $amount * 100;
+            if($connect){
+                $charge = Charge::create([
+                'source' => $token,
+                'amount'   => $correctedAmount,
+                'currency' => 'usd',
+                'description' => "Donation to $name",
+                ], ["stripe_account" => $connect]);
+            }else{
+                $charge = Charge::create([
+                'source' => $token,
+                'amount'   => $correctedAmount,
+                'currency' => 'usd',
+                'description' => "Donation to $name"
+            ]);    
         }
-        
-
+        }
     }
 }
