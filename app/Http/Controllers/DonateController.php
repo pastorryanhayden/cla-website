@@ -59,26 +59,23 @@ class DonateController extends Controller
         return view('success', compact('name', 'image'));
     }
 
-    protected function doPayment($token, $email, $amount)
+    protected function doPayment($token, $amount)
     {
         Stripe::setApiKey(env('STRIPE_KEY', null));
         $name = env('APP_NAME');
         $connect = env('STRIPE_CONNECT', null);
-        $customer = Customer::create(array(
-            'email' => $email,
-            'card'  => $token
-        ));
+      
         $correctedAmount = $amount * 100;
         if($connect){
             $charge = Charge::create([
-            'customer' => $customer->id,
+            'source' => $token,
             'amount'   => $correctedAmount,
             'currency' => 'usd',
             'description' => "Donation to $name",
             ], ["stripe_account" => $connect]);
         }else{
             $charge = Charge::create([
-            'customer' => $customer->id,
+            'source' => $token,
             'amount'   => $correctedAmount,
             'currency' => 'usd',
             'description' => "Donation to $name"
