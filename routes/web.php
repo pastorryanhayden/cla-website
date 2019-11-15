@@ -19,10 +19,14 @@ Route::get('/complete/{id}', 'ChargesController@complete');
 
 
 Auth::routes();
-Route::get('/bookstore', function(){
-    return view('bookstore');
-});
-Route::get('donate', 'DonateController@index');
+Route::get('/bookstore', 'BookStoreController@index');
+Route::post('/bookstore/add/{book}', 'BookStoreController@addToCart');
+Route::get('/cart', 'BookStoreController@cart');
+Route::post('/cart/remove/{id}', 'BookStoreController@cartRemove');
+Route::post('/updateItemQuantity/{id}', 'BookStoreController@cartUpdate');
+Route::get('/checkout', 'BookStoreController@checkout');
+Route::post('/checkout', 'ChargesController@index');
+Route::get('donate', 'DonateController@index'); 
 Route::post('donate', 'DonateController@submit');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/home', 'BooksController@index')->name('home');

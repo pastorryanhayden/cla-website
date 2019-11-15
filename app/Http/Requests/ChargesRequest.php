@@ -33,7 +33,7 @@ class ChargesRequest extends FormRequest
             'state' => 'required | string | min:2',
             'zip' => 'required | numeric | min:5',
             'email' => 'required | email',
-            'items' => 'required | array',
+            // 'items' => 'required | array',
             // 'items.Title' => 'required | string',
             // 'items.quant' => 'required | numeric',
             // 'items.Author' => 'required | string',

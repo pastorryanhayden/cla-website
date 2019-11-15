@@ -5389,6 +5389,12 @@ svgo@^1.0.0:
     unquote "~1.1.1"
     util.promisify "~1.0.0"
 
+tailwindcss-plugins@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/tailwindcss-plugins/-/tailwindcss-plugins-0.3.0.tgz#20ec0192a0681c4e2efbb6e5654b767bea388e94"
+  dependencies:
+    lodash "^4.17.11"
+
 tailwindcss-tables@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/tailwindcss-tables/-/tailwindcss-tables-0.4.0.tgz#1cbe26448251fd6f92ab142bfb165d7b7d0c07e8"

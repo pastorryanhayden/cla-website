@@ -86,21 +86,17 @@ class ChargesController extends Controller
 
         // Step 5:
         // Add Items to Order
-        // Current issue is array to string conversion issue.
-        // $items = collect($validated['items']);
-        // $items->each(function ($item, $key) {
-            
-        // });
-        
-        foreach($validated['items'] as $item)
+
+        $cartItems = session('cart');
+        foreach($cartItems as $item)
         {
             $orderItem = new OrderItem;
-            $orderItem->title = $item['title'];
+            $orderItem->title = $item['item']->title;
             $orderItem->order_id = $order->id;
-            $orderItem->author = $item['author']['name'];
-            $orderItem->category = $item['categories'][0]['title'];
-            $orderItem->cost = $item['cost'];
-            $orderItem->description = $item['description'];
+            $orderItem->author = $item['item']->author->name;
+            $orderItem->category = $item['item']->categories->first()->title;
+            $orderItem->cost = $item['item']->cost;
+            $orderItem->description = $item['item']->description;
             $orderItem->quantity = $item['quant'];
             $orderItem->save();
         }
@@ -115,7 +111,7 @@ class ChargesController extends Controller
             new OrderConfirmation($order)
         );
         // Return a Success string
-        return response()->json('Success', 200);
+        return redirect('/success');
 
     }
     public function complete($id){

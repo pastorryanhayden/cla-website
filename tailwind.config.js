@@ -6,5 +6,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/custom-forms'),
     require('tailwindcss-tables')(),
+    require('tailwindcss-plugins/pagination'),
   ]
 }
