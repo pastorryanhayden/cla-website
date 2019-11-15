@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-    <link href="/css/vue-store.css" rel="stylesheet">
+    {{-- <link href="/css/vue-store.css" rel="stylesheet"> --}}
     <title>Christian Law Association Books</title>
-    <script src="/js/vue-store.js"></script>
+    {{-- <script src="/js/vue-store.js"></script> --}}
 </head>
 
 <body>
@@ -21,11 +21,25 @@
         </div>
     </nav>
     <script src="https://js.stripe.com/v3/"> </script>
-    <div class="max-w-3xl mx-auto">
-        <vue-widget title="Bookstore"></vue-widget>
+    <div class="max-w-5xl mx-auto">
+    @include('includes.bookmenu')
+    @foreach($books as $book)
+        @include('includes.book')
+    @endforeach
+    <div class="mt-12">
+    {{ $books->links() }}
     </div>
-
-
+    </div>
+    <script>
+    var toggleCategories = () =>
+    {
+       document.querySelector('.categories ul').classList.toggle('hidden');
+    }
+    var selectCategory = (id) => 
+    {
+        window.location.search = `category=${id}`;
+    }
+    </script>
 </body>
 
 </html>
