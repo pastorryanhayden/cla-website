@@ -7,4 +7,6 @@
 {{$donation->email}}
 {{$donation->phone}}
 {{$donation->address}}
+{{$donation->address2 ? $donation->address2 : ''}}
+{{$donation->city}} {{$donation->state}}, {{$donation->zip}}
 @endcomponent

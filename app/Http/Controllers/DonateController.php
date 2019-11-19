@@ -36,6 +36,10 @@ class DonateController extends Controller
             'donator' => 'required',
             'amount' => 'required',
             'address' => 'required',
+            'address2' => 'nullable',
+            'city' => 'required',
+            'state' => 'required | max:2',
+            'zip' => 'required | max:5',
             'phone' => 'required',
             'email' => 'required',
             'stripeToken' => 'required'

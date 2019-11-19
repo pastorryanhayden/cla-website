@@ -31,7 +31,13 @@
                     <label for="address" class="mb-2">
                         Your Billing Address
                     </label>
-                    <textarea name="address" id="address" rows="3" class="border py-2 px-4 block mb-6" required></textarea>
+                    <input type="text" name="address" id="address" class=" w-full border py-2 px-4 block mb-2" placeholder="601 Some Street" required>
+                    <input type="text" name="address2" id="address2" class="w-full border py-2 px-4 block mb-2" placeholder="Apt. B">
+                    <div class="flex mb-6">
+                    <input type="text" name="city" id="city" class="border py-2 px-4 mr-2 block w-1/2" placeholder="Nashua">
+                    <input type="text" name="state" id="state" class="border py-2 px-4 block mr-2 w-1/4" placeholder="NH">
+                    <input type="text" name="zip" id="zip" class="border py-2 px-4 block w-1/4" placeholder="03050">
+                    </div>
                     <label for="amount" class="mb-2">
                         Amount to Donate (in dollars)
                     </label>
