@@ -54,6 +54,10 @@ class DonateController extends Controller
         $donation->donator = $request->donator;
         $donation->ammount = $request->amount;
         $donation->address = $request->address;
+        $donation->address2 = $request->address2;
+        $donation->city = $request->city;
+        $donation->state = $request->state;
+        $donation->zip = $request->zip;
         $donation->phone = $request->phone;
         $donation->email = $request->email;
         $donation->save();
