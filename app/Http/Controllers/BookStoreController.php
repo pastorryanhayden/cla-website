@@ -18,8 +18,10 @@ class BookStoreController extends Controller
            $cartItems = $cart->sum('quant');
         }
         $selectedCategory = $request->input('category') && $request->input('category') != 'all' ? Category::find($request->input('category')) : null;
-        $categories = Category::all(); 
-        $books = Book::orderBy('title', 'desc')->paginate(15);
+        $categories = Category::all();
+        $books = Book::with('categories')->orderBy('title', 'asc')->paginate(15);
+
+        
         if($selectedCategory)
         {
             $books = $selectedCategory->books()->paginate(15);
