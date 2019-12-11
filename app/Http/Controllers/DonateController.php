@@ -46,7 +46,7 @@ class DonateController extends Controller
         ]);
     
         try {
-            $this->doPayment($request->stripeToken, $request->email, $request->amount);
+            $this->doPayment($request->stripeToken, $request->amount);
         } catch (\Exception $e) {
             return $e->getMessage();
         }
