@@ -118,6 +118,7 @@ class BookStoreController extends Controller
             $total = $total + $cost; 
         }
         $total = $total * 100;
-        return view('checkout', compact('cartItems', 'total'));
+        $publicKey = env('STRIPE_PUBLIC');
+        return view('checkout', compact('cartItems', 'total', 'publicKey'));
     }
 }

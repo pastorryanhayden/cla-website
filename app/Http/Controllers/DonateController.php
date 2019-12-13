@@ -18,7 +18,7 @@ class DonateController extends Controller
     {
         $name = "Christian Law Association";
         $image = env('APP_IMAGE');
-        $key = env('LIVE_KEY');
+        $key = env('STRIPE_PUBLIC');
         
 
         return view('donate', [
@@ -69,26 +69,16 @@ class DonateController extends Controller
 
     protected function doPayment($token, $amount)
     {
-        Stripe::setApiKey(env('STRIPE_KEY', null));
+        Stripe::setApiKey(env('STRIPE_SECRET', null));
         $name = env('APP_NAME');
-        $connect = env('STRIPE_CONNECT', null);
         if(is_numeric($amount)){
-            $correctedAmount = $amount * 100;
-            if($connect){
-                $charge = Charge::create([
-                'source' => $token,
-                'amount'   => $correctedAmount,
-                'currency' => 'usd',
-                'description' => "Donation to $name",
-                ], ["stripe_account" => $connect]);
-            }else{
-                $charge = Charge::create([
-                'source' => $token,
-                'amount'   => $correctedAmount,
-                'currency' => 'usd',
-                'description' => "Donation to $name"
-            ]);    
-        }
+        $correctedAmount = $amount * 100;
+            $charge = Charge::create([
+            'source' => $token,
+            'amount'   => $correctedAmount,
+            'currency' => 'usd',
+            'description' => "Donation to $name"
+        ]);    
         }
     }
 }

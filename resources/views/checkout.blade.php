@@ -51,7 +51,7 @@
     </div>
     <script>
     // Create a Stripe client.
-        var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+        var stripe = Stripe('{{ $publicKey }}');
 
         // Create an instance of Elements.
         var elements = stripe.elements();

@@ -129,9 +129,8 @@ class ChargesController extends Controller
     protected function doPayment($token, $email, $amount)
     {
         return $token;
-        $stripeKey = env('STRIPE_KEY');
-        $stripeConnect = env('STRIPE_CONNECT');
-
+        $stripeKey = env('STRIPE_SECRET');
+       
        
 
         Stripe::setApiKey($stripeKey);
@@ -150,7 +149,6 @@ class ChargesController extends Controller
             'currency' => 'usd',
             'source' => $token->card->id, 
             'description' => "Books from CLA",
-            ["stripe_account" => $stripeConnect ]
         ));
     }
 }
