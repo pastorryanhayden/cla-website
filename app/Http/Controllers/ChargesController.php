@@ -41,41 +41,51 @@ class ChargesController extends Controller
         $customer->save();
 
         // Step 3:
-        // Charge Stripe Using the Connect ID.
-        try {
-            $this->doPayment($validated['stripeToken'], $validated['email'], $validated['ammount']);
-        } catch (Stripe\Exception\CardException $e) {
-            // Since it's a decline, \Stripe\Exception\CardException will be caught
-            $body = $e->getJsonBody();
-            $err  = $body['error'];
-            return $err;
-            print('Status is:' . $e->getHttpStatus() . "\n");
-            print('Type is:' . $e->getStripeError()->type . "\n");
-            print('Code is:' . $e->getStripeError()->code . "\n");
-            // param is '' in this case
-            print('Param is:' . $e->getStripeError()->param . "\n");
-            print('Message is:' . $e->getStripeError()->message . "\n");
-        } catch (Stripe\Exception\RateLimitException $e) {
-            // Too many requests made to the API too quickly
-            return 'Too many requests made to the API too quickly';
-        } catch (Stripe\Exception\InvalidRequestException $e) {
-            // Invalid parameters were supplied to Stripe's API
-            return 'Invalid parameters were supplied to Stripes API';
-        } catch (Stripe\Exception\AuthenticationException $e) {
-            // Authentication with Stripe's API failed
-            return "Authentication with Stripe's API failed";
-            // (maybe you changed API keys recently)
-        } catch (Stripe\Exception\ApiConnectionException $e) {
-            // Network communication with Stripe failed
-            return "Network communication with Stripe failed";
-        } catch (Stripe\Exception\ApiErrorException $e) {
-            // Display a very generic error to the user, and maybe send
-            return "Some other error";
-            // yourself an email
-        } catch (Exception $e) {
-            return "This is something else entirely.";
-            // Something else happened, completely unrelated to Stripe
-        }
+        
+        Stripe::setApiKey(env('STRIPE_SECRET', null));
+        $name = env('APP_NAME');
+        $charge = Charge::create([
+        'source' => $validated['stripeToken'],
+        'amount'   => $validated['ammount'],
+        'currency' => 'usd',
+        'description' => "Books from $name"
+        ]);    
+        
+        
+        // try {
+        //     $this->doPayment($validated['stripeToken'], $validated['email'], $validated['ammount']);
+        // } catch (Stripe\Exception\CardException $e) {
+        //     // Since it's a decline, \Stripe\Exception\CardException will be caught
+        //     $body = $e->getJsonBody();
+        //     $err  = $body['error'];
+        //     return $err;
+        //     print('Status is:' . $e->getHttpStatus() . "\n");
+        //     print('Type is:' . $e->getStripeError()->type . "\n");
+        //     print('Code is:' . $e->getStripeError()->code . "\n");
+        //     // param is '' in this case
+        //     print('Param is:' . $e->getStripeError()->param . "\n");
+        //     print('Message is:' . $e->getStripeError()->message . "\n");
+        // } catch (Stripe\Exception\RateLimitException $e) {
+        //     // Too many requests made to the API too quickly
+        //     return 'Too many requests made to the API too quickly';
+        // } catch (Stripe\Exception\InvalidRequestException $e) {
+        //     // Invalid parameters were supplied to Stripe's API
+        //     return 'Invalid parameters were supplied to Stripes API';
+        // } catch (Stripe\Exception\AuthenticationException $e) {
+        //     // Authentication with Stripe's API failed
+        //     return "Authentication with Stripe's API failed";
+        //     // (maybe you changed API keys recently)
+        // } catch (Stripe\Exception\ApiConnectionException $e) {
+        //     // Network communication with Stripe failed
+        //     return "Network communication with Stripe failed";
+        // } catch (Stripe\Exception\ApiErrorException $e) {
+        //     // Display a very generic error to the user, and maybe send
+        //     return "Some other error";
+        //     // yourself an email
+        // } catch (Exception $e) {
+        //     return "This is something else entirely.";
+        //     // Something else happened, completely unrelated to Stripe
+        // }
 
         // Step 4:
         // Create an Order
