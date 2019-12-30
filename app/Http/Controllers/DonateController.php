@@ -9,6 +9,7 @@ use Stripe\Customer;
 use Stripe\Stripe;
 use App\Donation;
 use App\Mail\NewDonation;
+use App\Mail\DonationMail;
 use Illuminate\Support\Facades\Mail;
 
 class DonateController extends Controller
@@ -62,6 +63,7 @@ class DonateController extends Controller
         $donation->email = $request->email;
         $donation->save();
         Mail::to('info@christianlaw.org')->send(new NewDonation($donation));
+        Mail::to($donation->email)->send(new DonationMail($donation));
         $name = env('APP_NAME');
         $image = env('APP_IMAGE');
         return view('success', compact('name', 'image'));
